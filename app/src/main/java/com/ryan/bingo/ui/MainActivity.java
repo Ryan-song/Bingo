@@ -1,10 +1,14 @@
-package com.ryan.bingo;
+package com.ryan.bingo.ui;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -15,26 +19,36 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.ryan.bingo.R;
+import com.ryan.bingo.ui.news.BaseNewsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private Drawer drawer;
     private AccountHeader header;
-    private ViewPager viewPager;
+    private FrameLayout frameLayout;
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initData();
+
+    }
+
+
+    private void switchFragment(Fragment fragment){
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayout,fragment);
+        fragmentTransaction.commit();
     }
 
     private void initData() {
-
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        frameLayout = (FrameLayout) findViewById(R.id.framelayout);
+
         setSupportActionBar(toolbar);
         header = new AccountHeaderBuilder().withActivity(this)
                 .withCompactStyle(false)
@@ -65,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         switch ((int) drawerItem.getIdentifier()) {
                             case R.drawable.ic_news:
-                                Toast.makeText(MainActivity.this, "news", Toast.LENGTH_SHORT).show();
+                                switchFragment(new BaseNewsFragment());
                                 break;
                             case R.drawable.ic_reading:
                                 Toast.makeText(MainActivity.this, "reading", Toast.LENGTH_SHORT).show();

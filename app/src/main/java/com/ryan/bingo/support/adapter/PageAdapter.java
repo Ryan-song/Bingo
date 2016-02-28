@@ -1,4 +1,4 @@
-package com.ryan.bingo;
+package com.ryan.bingo.support.adapter;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
