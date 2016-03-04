@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class NewsFragment extends Fragment{
     private RecyclerView recyclerView;
     private RequestQueue queue;
     private List<NewsBean> items = new ArrayList<>();
-    private NewsAdapter adapter = new NewsAdapter(items);
+    private NewsAdapter adapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Nullable
@@ -57,6 +58,7 @@ public class NewsFragment extends Fragment{
     }
 
     void initData() {
+        adapter = new NewsAdapter(getContext(),items);
         refreshView = (PullToRefreshView) parentView.findViewById(R.id.pull_to_refresh);
         recyclerView = (RecyclerView) parentView.findViewById(R.id.recyclerView);
         final String url = getArguments().getString("url");
@@ -73,18 +75,23 @@ public class NewsFragment extends Fragment{
         });
     }
 
-    private void loadNewsFromNet(String url) {
+    private void loadNewsFromNet(String url){
         queue = Volley.newRequestQueue(getContext());
-        final StringRequest request = new StringRequest(url, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @TargetApi(Build.VERSION_CODES.KITKAT)
             @Override
-            public void onResponse(String response) {
+            public void onResponse(String s) {
                 InputStream is =
-                        new ByteArrayInputStream(response.getBytes(StandardCharsets.ISO_8859_1));
-
+                        new ByteArrayInputStream(s.getBytes(StandardCharsets.ISO_8859_1));
                 try {
+//                    for(int i=0 ;i<items.size() ; i++){
+//                        System.out.println("BeforeClean_items: "+items.get(i).getTitle());
+//                    }
                     items.clear();
                     items.addAll(SAXNewsParse.parse(is));
+//                    for(int i=0 ;i<items.size() ; i++){
+//                        System.out.println("AfterClean_items: "+items.get(i).getTitle());
+//                    }
                 } catch (ParserConfigurationException e) {
                     e.printStackTrace();
                 } catch (SAXException e) {
@@ -97,7 +104,7 @@ public class NewsFragment extends Fragment{
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onErrorResponse(VolleyError volleyError) {
                 Utils.showToast("网络异常 刷新失败");
                 refreshView.setRefreshing(false);
             }
@@ -110,6 +117,7 @@ public class NewsFragment extends Fragment{
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
+            Log.d("F_NewsFragment","handler_handleMessage()");
             adapter.notifyDataSetChanged();
             return false;
         }

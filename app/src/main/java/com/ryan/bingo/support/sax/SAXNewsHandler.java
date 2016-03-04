@@ -1,5 +1,7 @@
 package com.ryan.bingo.support.sax;
 
+import android.util.Log;
+
 import com.ryan.bingo.modle.NewsBean;
 
 import org.xml.sax.Attributes;
@@ -30,13 +32,18 @@ public class SAXNewsHandler extends DefaultHandler {
         if (qName.equalsIgnoreCase("item")){
             tmpBean = new NewsBean();
             items.add(tmpBean);
+//            for(int i = 0 ;i < items.size() ; i++){
+//                System.out.println("F_SAXNewsHandler,items.get(i).getTitle() "+items.get(i).getTitle());
+//            }
             if (isFirst){
                 tmpVal = new StringBuffer();
+//                System.out.println("F_SAXNewsHandler,tmpVal.toString() "+tmpVal.toString());
                 isFirst = false;
             }
         }else if (qName.equalsIgnoreCase("description")){
             tmpBean.setPubTimeWithFormat((tmpVal.toString()));
             tmpVal = new StringBuffer();
+//            Log.d("F_SAXNewsHandler",tmpVal.toString());
         }
     }
 

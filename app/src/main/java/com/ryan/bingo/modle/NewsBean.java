@@ -5,8 +5,13 @@ import com.ryan.bingo.support.Utils;
 /**
  * Created by air on 16/2/28.
  */
-public class NewsBean {
 
+/**
+ *
+ * 要适配的Adapter的news信息
+ *
+ */
+public class NewsBean {
     private String title;
     private String link;
     private String description;
@@ -29,7 +34,7 @@ public class NewsBean {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = formatClearHtmlLabel(title);
     }
 
     public String getLink() {
@@ -49,24 +54,23 @@ public class NewsBean {
     }
 
     public void setDescriptionWithFormat(String description) {
-        this.description = formatDescription(description);
+        this.description = formatClearHtmlLabel(description);
     }
 
     private String formatTime(String pubTime) {
 
-        Utils.DLog(pubTime);
+//        Utils.DLog(pubTime);
         String date = Utils.RegexFind("-.{4} ", pubTime) + "年" +
                 formatMonth(Utils.RegexFind("-.{3}-", pubTime)) + "月" +
                 Utils.RegexFind(",.{1,2}-", pubTime) + "日" +
                 Utils.RegexFind(" .{2}:", pubTime) + "点" +
                 Utils.RegexFind(":.{2}:", pubTime) + "分" +
                 Utils.RegexFind(":.{2} ", pubTime) + "秒";
-        Utils.DLog(date);
         return date;
     }
 
-    private String formatDescription(String description) {
-        return this.description = Utils.RegexReplace("<[^>]+>", description, "");
+    private String formatClearHtmlLabel(String string) {
+        return this.description = Utils.RegexReplace("<[^>\n]*>", string, "");
     }
 
     private final String MONTH[] =

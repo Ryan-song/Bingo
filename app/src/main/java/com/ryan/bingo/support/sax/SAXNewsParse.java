@@ -25,6 +25,9 @@ public class SAXNewsParse {
         xmlReader.setContentHandler(saxNewsHandler);
         xmlReader.parse(new InputSource(is));
         items = saxNewsHandler.getItems();
+//        for(int i = 0 ;i < items.size() ; i++){
+//            System.out.println("F_SAXNewsParse: "+items.get(i).getTitle());
+//        }
         return items;
     }
 }
