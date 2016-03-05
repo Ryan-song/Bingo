@@ -1,8 +1,6 @@
 package com.ryan.bingo.support.sax;
 
-import android.util.Log;
-
-import com.ryan.bingo.modle.NewsBean;
+import com.ryan.bingo.modle.news.NewsBean;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

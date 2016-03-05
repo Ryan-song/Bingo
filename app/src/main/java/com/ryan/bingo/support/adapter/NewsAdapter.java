@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ryan.bingo.R;
-import com.ryan.bingo.modle.NewsBean;
+import com.ryan.bingo.modle.news.NewsBean;
 import com.ryan.bingo.ui.news.NewsDetailsActivity;
 
 import java.util.List;

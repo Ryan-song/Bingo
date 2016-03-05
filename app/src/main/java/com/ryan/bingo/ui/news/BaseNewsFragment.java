@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
-import com.ryan.bingo.modle.Entity;
+import com.ryan.bingo.api.NewsApi;
 import com.ryan.bingo.support.Utils;
 import com.ryan.bingo.support.adapter.PageAdapter;
 import com.ryan.bingo.ui.AbsTopNavigationFragment;
@@ -21,10 +21,10 @@ public class BaseNewsFragment extends AbsTopNavigationFragment{
     @Override
     protected PageAdapter initPageAdapter() {
         Log.d("F_BaseNewsFragment","initPageAdapter()");
-        name = Entity.getNewsTitle();
-        url = Entity.getNewsUrl();
-        Log.d("F_BaseNewsFragment", "name From Entity: "+Arrays.toString(name));
-        Log.d("F_BaseNewsFragment","url From Entity : "+Arrays.toString(url));
+        name = NewsApi.getNewsTitle();
+        url = NewsApi.getNewsUrl();
+        Log.d("F_BaseNewsFragment", "name From NewsApi: "+Arrays.toString(name));
+        Log.d("F_BaseNewsFragment","url From NewsApi : "+Arrays.toString(url));
 
         pageAdapter = new PageAdapter(getFragmentManager(),name,url) {
             @Override

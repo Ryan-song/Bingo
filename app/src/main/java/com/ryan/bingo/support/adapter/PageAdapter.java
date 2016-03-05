@@ -23,6 +23,11 @@ public abstract class PageAdapter extends FragmentStatePagerAdapter{
         Log.d("F_PageAdapter", "构造参数String[] titles:"+Arrays.toString(this.TITLES));
     }
 
+    public PageAdapter(FragmentManager fm, String[] titles) {
+        super(fm);
+        this.TITLES = titles;
+    }
+
     @Override
     public int getCount() {
         Log.d("F_PageAdapter", "getCount()"+TITLES.length);

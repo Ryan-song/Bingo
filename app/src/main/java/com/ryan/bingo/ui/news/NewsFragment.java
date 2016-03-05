@@ -21,7 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ryan.bingo.R;
-import com.ryan.bingo.modle.NewsBean;
+import com.ryan.bingo.modle.news.NewsBean;
 import com.ryan.bingo.support.Utils;
 import com.ryan.bingo.support.adapter.DividerItemDecoration;
 import com.ryan.bingo.support.adapter.NewsAdapter;

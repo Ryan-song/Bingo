@@ -1,7 +1,6 @@
 package com.ryan.bingo.support.sax;
 
-import com.ryan.bingo.modle.NewsBean;
-import com.ryan.bingo.support.sax.SAXNewsHandler;
+import com.ryan.bingo.modle.news.NewsBean;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;

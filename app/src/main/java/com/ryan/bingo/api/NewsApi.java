@@ -1,4 +1,4 @@
-package com.ryan.bingo.modle;
+package com.ryan.bingo.api;
 
 import android.util.Log;
 
@@ -21,7 +21,7 @@ import java.io.InputStream;
  * newsTitle:   [http://www.xinhuanet.com/local/news_province.xml,~~~]
  *
  */
-public class Entity {
+public class NewsApi {
     private static String[] newsUrl = null;
     private static String[] newsTitle = null;
     private static Document document = null;
@@ -39,7 +39,7 @@ public class Entity {
                 newsUrl[i] = urlList.item(i).getTextContent();
                 System.out.println("Entity_getNewsUrl[ "+i+ "]"+urlList.item(i).getTextContent().toString());
             }
-//            Log.d("Entity",newsUrl.toString());
+//            Log.d("NewsApi",newsUrl.toString());
         }
         return newsUrl;
     }

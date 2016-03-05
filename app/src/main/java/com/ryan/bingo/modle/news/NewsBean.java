@@ -1,4 +1,4 @@
-package com.ryan.bingo.modle;
+package com.ryan.bingo.modle.news;
 
 import com.ryan.bingo.support.Utils;
 
