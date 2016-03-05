@@ -35,15 +35,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initData();
-        switchFragment(new BaseNewsFragment());
+        switchFragment(new BaseNewsFragment(), "新闻");
     }
 
 
-    private void switchFragment(Fragment fragment){
+    private void switchFragment(Fragment fragment,String Title){
         Log.d("F_MainActivity","switchFragment()");
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout,fragment);
+        fragmentTransaction.replace(R.id.framelayout, fragment);
         fragmentTransaction.commit();
+        this.setTitle(Title);
     }
 
     private void initData() {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         frameLayout = (FrameLayout) findViewById(R.id.framelayout);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         header = new AccountHeaderBuilder().withActivity(this)
                 .withCompactStyle(false)
                 .withHeaderBackground(R.drawable.header)
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         switch ((int) drawerItem.getIdentifier()) {
                             case R.drawable.ic_news:
                                 Log.d("F_MainActivity","DrawerItemClick--R.drawable.ic_news");
-                                switchFragment(new BaseNewsFragment());
+                                switchFragment(new BaseNewsFragment(),"新闻");
                                 break;
                             case R.drawable.ic_reading:
                                 Toast.makeText(MainActivity.this, "reading", Toast.LENGTH_SHORT).show();

@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.ryan.bingo.R;
 import com.ryan.bingo.modle.NewsBean;
 import com.ryan.bingo.support.Utils;
+import com.ryan.bingo.support.adapter.DividerItemDecoration;
 import com.ryan.bingo.support.adapter.NewsAdapter;
 import com.ryan.bingo.support.sax.SAXNewsParse;
 import com.yalantis.phoenix.PullToRefreshView;
@@ -65,6 +67,9 @@ public class NewsFragment extends Fragment{
         mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration( new DividerItemDecoration(
+                getActivity(),DividerItemDecoration.VERTICAL_LIST));
         loadNewsFromNet(url);
 
         refreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {

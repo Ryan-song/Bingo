@@ -25,16 +25,16 @@ public abstract class PageAdapter extends FragmentStatePagerAdapter{
 
     @Override
     public int getCount() {
-//        Log.d("F_PageAdapter", "getCount()");
+        Log.d("F_PageAdapter", "getCount()"+TITLES.length);
         return TITLES.length;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
 //        Log.d("F_PageAdapter", "getPageTitle()");
-        Log.d("F_PageAdapter", "getPageTitle [ "+position+" ]");
-        Log.d("F_PageAdapter", "getPageTitle [ "+TITLES[position].toString()+" ]");
-        Log.d("F_PageAdapter", "getPageURL [ "+TestURL[position].toString()+" ]");
+        Log.d("F_PageAdapter", "getPageTitle [ "+position+" ] "+ " TITLE: "+TITLES[position]);
+//        Log.d("F_PageAdapter", "getPageTitle [ "+TITLES[position].toString()+" ]");
+//        Log.d("F_PageAdapter", "getPageURL [ "+TestURL[position].toString()+" ]");
         return TITLES[position];
     }
 }
