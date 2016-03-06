@@ -1,14 +1,17 @@
 package com.ryan.bingo.api;
 
+import com.mikepenz.iconics.utils.RemoveInfo;
+import com.ryan.bingo.support.Utils;
+
 /**
  * Created by air on 16/3/5.
  */
 public class ReadingApi {
-    public static String searchByTag = "api.douban.com/v2/book/search?tag=";
-    public static String searchByText = "api.douban.com/v2/book/search?q=";
+    public static String searchByTag = "http://api.douban.com/v2/book/search?tag=";
+    public static String searchByText = "http://api.douban.com/v2/book/search?q=";
     public static String searchByID = "https://api.douban.com/v2/book/";
     public static String readEBook = "http://read.douban.com/reader/ebook/";
-    public static String Tag_Titles[] = {"综合", "文学", "流行", "文化", "生活", "经管", "科技"};
+    public static String Tag_Titles[] = {"综合", "文学", "流行", "文化", "生活", "经管", "程序员"};
     public static String LiterTag[] = {"小说", "中国文学", "村上春树", "王小波", "余华", "鲁迅",
             "米兰·昆德拉", "外国文学", "经典", "童话", "儿童文学", "名著", "外国名著", "杜拉斯", "文学",
             "散文", "诗歌", "张爱玲", "钱钟书", "诗词", "港台", "随笔", "日本文学", "杂文", "古典文学",
@@ -29,4 +32,49 @@ public class ReadingApi {
             "创业", "理财", "广告", "股票", "企业史", "策划"};
     public static String ScienceTag[] = {"编程", "科学", "交互", "设计", "算法", "web", "科技",
             "UE", "科普", "互联网", "用户体验", "通信", "交互", "UCD"};
+
+    public static String[] getApiTag(int pos) {
+        switch (pos) {
+            case 0:
+                return Tag_Titles;
+            case 1:
+                return LiterTag;
+            case 2:
+                return NovelTag;
+            case 3:
+                return CultureTag;
+            case 4:
+                return LiterTag;
+            case 5:
+                return LifeTag;
+            case 6:
+                return FinancialTag;
+            case 7:
+                return ScienceTag;
+        }
+        return null;
+    }
+
+    public static String[] getTags(String[] tag) {
+        int len = tag.length, LEN = 5;
+        String[] res = new String[LEN];
+        for (int i = 0; i < LEN; i++) {
+            boolean flag = true;
+            int tmp = 0;
+            while (flag) {
+                flag = false;
+                tmp = (int) (Math.random() * len);
+                Utils.DLog(tmp + "");
+                for (int j = 0; j < i; j++)
+                    if (res[j].equals(tag[tmp])) {
+                        flag = true;
+                        break;
+                    }
+            }
+            res[i] = tag[tmp];
+        }
+        return res;
+    }
+
+
 }

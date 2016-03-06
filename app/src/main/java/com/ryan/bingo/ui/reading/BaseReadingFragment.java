@@ -23,7 +23,7 @@ public class BaseReadingFragment extends AbsTopNavigationFragment {
             public Fragment getItem(int position) {
                 ReadingFragment readingFragment = new ReadingFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("pos","position: ["+position+"]");
+                bundle.putInt("pos",position);
                 readingFragment.setArguments(bundle);
                 return readingFragment;
             }
