@@ -22,7 +22,7 @@ import javax.xml.parsers.ParserConfigurationException;
  * Created by air on 16/2/28.
  */
 public class Utils {
-    private static Context mContext = BingoApplication.AppContent;
+    private static Context mContext = BingoApplication.AppContext;
 
     public static InputStream readFileFromRaw(int fileID) {
         return mContext.getResources().openRawResource(fileID);
